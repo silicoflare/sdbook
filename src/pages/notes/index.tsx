@@ -44,9 +44,10 @@ export default function Dashboard() {
       </Head>
       <div className="flex h-full w-full flex-col items-center gap-2">
         <Navbar />
-        <div className="flex h-full w-1/2 flex-col items-center p-10">
-          <h1 className="text-4xl font-bold text-primary">My Notes</h1>
-
+        <div className="flex h-full w-1/2 ph:w-full flex-col items-center p-10 ph:p-5">
+          <h1 className="text-4xl ph:text-4xl font-bold text-primary ph:w-full ph:text-center">
+            My Notes
+          </h1>
           <div className="flex w-full items-center gap-5 pb-5 pt-10">
             <Input
               value={search}
@@ -54,8 +55,9 @@ export default function Dashboard() {
               className="border-primary"
             />
             <Link href="/notes/new">
-              <Button>
-                <PlusIcon /> New Note
+              <Button className="ph:w-10 ph:p-1">
+                <PlusIcon />
+                <span className="ph:hidden">New Note</span>
               </Button>
             </Link>
           </div>

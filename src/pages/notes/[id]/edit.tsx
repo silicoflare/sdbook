@@ -97,7 +97,7 @@ export default function EditNote() {
             <Head>
               <title>Edit {data?.title} - SD Book</title>
             </Head>
-            <div className="w-1/2 flex flex-col items-center">
+            <div className="w-1/2 ph:w-full ph:p-5 flex flex-col items-center">
               <h1 className="text-4xl font-bold my-10">Edit Note</h1>
               <Form {...form}>
                 <form

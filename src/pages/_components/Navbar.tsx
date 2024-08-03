@@ -13,18 +13,21 @@ import {
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Navbar() {
   const { data: session } = useSession();
+  const router = useRouter();
+
   return (
-    <div className="z-[100] flex w-full items-center justify-between bg-primary p-5 px-10 shadow-md">
+    <div className="z-[100] flex w-full items-center justify-between bg-primary p-5 px-10 ph:px-5 shadow-md">
       <h1 className="flex items-center gap-3 text-2xl font-bold text-primary-foreground">
         <NotebookIcon size={25} />
         SD Book
       </h1>
       {session ? (
         <div className="flex items-center gap-7">
-          <Link href="/notes" className="text-primary-foreground">
+          <Link href="/notes" className="text-primary-foreground ph:hidden">
             My Notes
           </Link>
           {/* <Link href="/shared" className="text-primary-foreground">
@@ -40,6 +43,9 @@ export default function Navbar() {
             </DropdownMenuTrigger>
             <DropdownMenuContent className="z-[110] mr-5 p-3">
               <DropdownMenuLabel>{session.user.id}</DropdownMenuLabel>
+              <DropdownMenuItem onClick={(_) => router.push("/notes")}>
+                My Notes
+              </DropdownMenuItem>
               {session.user.role === "ADMIN" ? (
                 <DropdownMenuItem>Users</DropdownMenuItem>
               ) : null}

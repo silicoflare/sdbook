@@ -57,8 +57,8 @@ export default function NewNote() {
       </Head>
       <div className="flex flex-col w-full h-full items-center gap-2">
         <Navbar />
-        <div className="w-1/2 flex flex-col items-center">
-          <h1 className="text-4xl font-bold my-10">New Note</h1>
+        <div className="w-1/2 ph:w-full ph:p-5 flex flex-col items-center">
+          <h1 className="text-4xl font-bold my-10 ph:my-5">New Note</h1>
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(createForm)}

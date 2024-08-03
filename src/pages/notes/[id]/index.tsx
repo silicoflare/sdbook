@@ -112,7 +112,7 @@ export default function ViewNote() {
             <Head>
               <title>{data.title}</title>
             </Head>
-            <div className="flex flex-col items-center w-1/2 p-10 gap-2">
+            <div className="flex flex-col items-center w-1/2 ph:w-full p-10 ph:p-5 gap-2">
               <h1 className="text-4xl font-bold w-full text-left">
                 {data.title}
               </h1>
@@ -121,12 +121,12 @@ export default function ViewNote() {
                 <DotIcon />
                 <span>{moment(data.updatedAt).format("LL \\at LT")}</span>
               </span>
-              <div className="my-3 flex items-center justify-end gap-3 w-full">
+              <div className="my-3 flex items-center justify-end ph:grid ph:grid-cols-2 gap-3 w-full">
                 <Dialog open={open} onOpenChange={setOpen}>
                   <DialogTrigger>
                     <Button
                       variant="destructive"
-                      className="flex items-center gap-2"
+                      className="flex items-center gap-2 ph:w-full"
                     >
                       <Trash2Icon size={20} />
                       Delete
@@ -157,7 +157,7 @@ export default function ViewNote() {
                   </DialogContent>
                 </Dialog>
                 <Link href={`/notes/${id}/edit`}>
-                  <Button className="flex items-center gap-2">
+                  <Button className="flex items-center gap-2 ph:w-full">
                     <PencilIcon size={20} />
                     Edit
                   </Button>
