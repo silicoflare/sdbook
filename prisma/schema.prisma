@@ -51,19 +51,22 @@ model VerificationToken {
 }
 
 model Note {
-    noteID    String   @id @default(cuid())
-    createdBy User     @relation(fields: [creatorID], references: [username], onDelete: Cascade)
-    creatorID String
-    title     String
-    markdown  String
-    updatedAt DateTime @updatedAt
+    noteID     String   @id @default(cuid())
+    createdBy  User     @relation(fields: [creatorID], references: [username], onDelete: Cascade)
+    creatorID  String
+    title      String
+    markdown   String
+    visibility Int
+    accessList User[]   @relation("SharedNotes")
+    updatedAt  DateTime @updatedAt
 }
 
 model User {
-    username String    @id
-    password String
-    role     String
-    notes    Note[]
-    accounts Account[]
-    sessions Session[]
+    username    String    @id
+    password    String
+    role        String
+    notes       Note[]
+    sharedNotes Note[]    @relation("SharedNotes")
+    accounts    Account[]
+    sessions    Session[]
 }

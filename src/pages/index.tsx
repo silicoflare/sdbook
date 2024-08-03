@@ -25,6 +25,7 @@ import { signIn, useSession } from "next-auth/react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import Head from "next/head";
 
 export default function App() {
   const router = useRouter();
@@ -32,9 +33,9 @@ export default function App() {
 
   useEffect(() => {
     if (session) {
-      router.push("/dashboard");
+      router.push("/notes");
     }
-  }, []);
+  }, [ session ]);
 
   const formSchema = z.object({
     username: z.string().min(1),
@@ -58,7 +59,7 @@ export default function App() {
 
       if (res?.ok) {
         toast.success("Signed in successfully!");
-        router.push("/dashboard");
+        router.push("/notes");
       } else {
         if (res?.status === 401) {
           toast.error("Invalid username or password!");
@@ -73,6 +74,10 @@ export default function App() {
   }
 
   return (
+    <>
+    <Head>
+      <title>Login - SD Book</title>
+    </Head>
     <div className="flex w-full h-full flex-col items-center gap-2">
       <Navbar />
       <div className="flex h-full w-full flex-col items-center justify-center">
@@ -95,7 +100,7 @@ export default function App() {
                       <FormItem className="w-full">
                         <FormLabel>Username</FormLabel>
                         <FormControl>
-                          <Input {...field} defaultValue="" />
+                          <Input {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -108,7 +113,7 @@ export default function App() {
                       <FormItem className="w-full">
                         <FormLabel>Password</FormLabel>
                         <FormControl>
-                          <Input type="password" {...field} defaultValue="" />
+                          <Input type="password" {...field}  />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -124,5 +129,6 @@ export default function App() {
         </Card>
       </div>
     </div>
+    </>
   );
 }

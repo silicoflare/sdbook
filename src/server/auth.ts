@@ -4,13 +4,14 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { db } from '@/server/db';
 import { Adapter } from 'next-auth/adapters';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 declare module "next-auth" {
   export interface Session extends DefaultSession {
     user: User;
   }
 
-  export interface User extends DefaultUser {
+  export interface User {
     id: string;
     role: string;
   }
@@ -38,7 +39,6 @@ export const authOptions: AuthOptions = {
     session: ({ session, token }) => ({
       ...session,
       user: {
-        ...session.user,
         id: token.id,
         role: token.role,
       },
@@ -73,4 +73,4 @@ export const authOptions: AuthOptions = {
   }
 }
 
-export const getServerAuthSession = () => getServerSession(authOptions)
+export const getServerAuthSession = (req: NextApiRequest, res: NextApiResponse) => getServerSession(req, res, authOptions)
